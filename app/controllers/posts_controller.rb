@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find(params[:id])
+		# @category = @post.category
 	end
 
 	def new
@@ -24,7 +25,7 @@ class PostsController < ApplicationController
 
 	def update
 		post = Post.find(params[:id])
-		post.update(params.require(:post))
+		post.update(params.require(:post).permit(:title, :description))
 		redirect_to post_path(post)
 	end
 end
